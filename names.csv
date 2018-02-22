@@ -1,12 +1,12 @@
-Firstname;Lastname;Firstlastfunny;ct;Improper;Resolution;Explanation;Author;Comment
-Kurt;Zeitgedächtnis;true;yes;;Kurzzeitgedächtnis;;Nik;
-Gus;Enhauer;true;yes;;Gassenhauer;;Nik;
-Sue;Perman;true;yes;;;;Nik; 
-Leif;Übertragung;true;yes;;;;Nik; 
-Klara;Fall;true;yes;;;;Nik; 
-Mike;Äfer;true;yes;;Maikäfer;;Nik; 
-Moni;Toring;true;yes;;;;Nik; 
-Ingo;Knito;true;yes;;;;; 
-Roy;Madecke;true;yes;;;;; 
-Lore;Mipsum;true;yes;;Lorem Ipsum;Lorem Ipsum wird als Fülltext for Textverarbeitung, DTP und Webdesign benutzt.;; 
-Steve;Mütterchen;true;yes;;;;; 
+Firstname;Lastname;Firstlastfunny;Resolution;Explanation;Author;Comment
+Kurt;Zeitgedächtnis;true;Kurzzeitgedächtnis;;Nik;
+Gus;Enhauer;true;Gassenhauer;;Nik;
+Sue;Perman;true;;;Nik;
+Leif;Übertragung;true;;;Nik;
+Klara;Fall;true;;;Nik;
+Mike;Äfer;true;Maikäfer;;Nik;
+Moni;Toring;true;;;Nik;
+Ingo;Knito;true;;;;
+Roy;Madecke;true;;;;
+Lore;Mipsum;true;Lorem Ipsum;Lorem Ipsum wird als Fülltext for Textverarbeitung, DTP und Webdesign benutzt.;;
+Steve;Mütterchen;true;;;;
