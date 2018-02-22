@@ -1,5 +1,5 @@
 <html>
   <p>
-  Firstname: {{ name.firstname }}, lastname: {{ name.lastname }}
+  Firstname: {{ name.firstname.decode('utf-8') }}, lastname: {{ name.lastname.decode('utf-8') }}
   </p>
 </html>
