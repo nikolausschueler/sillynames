@@ -15,7 +15,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_login_page(self):
         self.browser.get('http://127.0.0.1:5000')
         t = self.browser.find_element_by_tag_name('p').text
-        self.assertIn('Firstname:', t)
+        self.assertIn('Name:', t)
 
 if __name__ == '__main__':
     unittest.main()

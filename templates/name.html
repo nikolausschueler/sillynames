@@ -1,5 +1,29 @@
 <html>
-  <p>
-  Firstname: {{ name.firstname.decode('utf-8') }}, lastname: {{ name.lastname.decode('utf-8') }}
-  </p>
+  <script type="text/javascript">
+    function init () {
+      document.getElementById('show').style.visibility = 'hidden';
+      document.getElementById('explain').style.visibility = 'hidden';
+      document.getElementById('explainbutton').style.visibility = 'hidden';
+    }
+    function show () {
+      document.getElementById('show').style.visibility = 'visible';
+      document.getElementById('explainbutton').style.visibility = 'visible';
+    }
+    function explain () {
+      document.getElementById('explain').style.visibility = 'visible';
+    }
+  </script>
+
+  <body onload="init()">
+
+    <p id="name">Name: {{ name.get_puzzle_name().decode('utf-8') }}</p>
+    <input type="button" value="Zeigs mir" onclick="show()">
+    <p id="show">{{ name.get_funny_name().decode('utf-8') }}</p>
+
+    {% if name.resolution %}
+    <input type="button" id="explainbutton" value="Erklärs mir" onclick="explain()">
+    <p id="explain">{{ name.resolution.decode('utf-8') }}</p>
+    {% endif %}
+
+  </body>
 </html>

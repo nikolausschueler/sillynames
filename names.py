@@ -19,6 +19,28 @@ class Name:
         self.lastname = lastname
         self.firstlastfunny = firstlastfunny
 
+    def get_puzzle_name(self):
+        '''
+        Get the name in the form that lets you puzzle a bit what's funny about
+        it. For example, "Sigrid Top" is the puzzle form of "Top, Sigrid".
+        '''
+        if self.firstlastfunny:
+            s = self.lastname + ', ' + self.firstname
+        else:
+            s = self.firstname + ' ' + self.lastname
+        return s
+
+    def get_funny_name(self):
+        '''
+        Get the name in it's (presumably) funny form. For example, "Top, Sigrid"
+        is the funny form of "Sigrid Top".
+        '''
+        if self.firstlastfunny:
+            s = self.firstname + self.lastname
+        else:
+            s = self.lastname + self.firstname
+        return s.capitalize()
+
 def read_csv(f):
     dr = csv.DictReader(f, fieldnames=CSV_HEADERS, delimiter=';')
     names = []
