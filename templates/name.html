@@ -1,4 +1,8 @@
+{% extends "base.html" %}
+
 <html>
+
+  {% block content %}
   <script type="text/javascript">
     function init () {
       document.getElementById('show').style.visibility = 'hidden';
@@ -26,4 +30,6 @@
     {% endif %}
 
   </body>
+
+  {% endblock %}
 </html>
