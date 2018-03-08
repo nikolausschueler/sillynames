@@ -14,7 +14,10 @@ class NewVisitorTest(unittest.TestCase):
     def tearDown(self):
         self.browser.quit()
 
-    def test_login_page(self):
+    def test_name(self):
+        '''
+        Check that name is displayed.
+        '''
         self.browser.get('http://127.0.0.1:5000')
         t = self.browser.find_element_by_id('name').text
 
