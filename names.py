@@ -41,23 +41,27 @@ class Name:
             s = self.lastname + self.firstname
         return s.capitalize()
 
-def read_csv(f):
-    dr = csv.DictReader(f, fieldnames=CSV_HEADERS, delimiter=';')
-    names = []
-    for row in dr:
-        logging.debug('Got CSV row: %s' % row)
-        name = Name(row['Firstname'], row['Lastname'], row['Firstlastfunny'])
+    @staticmethod
+    def from_csv(f):
+        '''
+        Returns a list of names, read from a CSV file.
+        '''
+        dr = csv.DictReader(f, fieldnames=CSV_HEADERS, delimiter=';')
+        names = []
+        for row in dr:
+            logging.debug('Got CSV row: %s' % row)
+            name = Name(row['Firstname'], row['Lastname'], row['Firstlastfunny'])
 
-        # The fields are not mandatory, so reading may fail gracefully with a
-        # default value.
-        name.resolution = row.get('Resolution')
-        name.explanation = row.get('Explanation')
-        name.author = row.get('Author')
-        name.comment = row.get('Comment')
-        logging.debug('Read name with firstname %s and lastname %s' %
-                (name.firstname, name.lastname))
-        names.append(name)
-    return names
+            # The fields are not mandatory, so reading may fail gracefully with a
+            # default value.
+            name.resolution = row.get('Resolution')
+            name.explanation = row.get('Explanation')
+            name.author = row.get('Author')
+            name.comment = row.get('Comment')
+            logging.debug('Read name with firstname %s and lastname %s' %
+                    (name.firstname, name.lastname))
+            names.append(name)
+        return names
 
 #
 # Initialization.
@@ -66,7 +70,7 @@ app = Flask(__name__)
 
 #import pdb; pdb.set_trace()
 
-names = read_csv(open(CSV_FILE))
+names = Name.from_csv(open(CSV_FILE))
 
 @app.route('/')
 def random_name():
