@@ -72,10 +72,13 @@ app = Flask(__name__)
 
 names = Name.from_csv(open(CSV_FILE))
 
+# Ignore the header, we are only interested in the data.
+names = names[1:]
+
 @app.route('/')
 def random_name():
 
     # This ignores the first row, which contains the header.
-    name = random.choice(names[1:])
+    name = random.choice(names)
 
     return render_template('name.html', name=name)
