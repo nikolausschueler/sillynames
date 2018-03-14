@@ -25,7 +25,7 @@ class NewVisitorTest(unittest.TestCase):
 
         found = False
         for name in self.names:
-            if name.get_puzzle_name().decode('utf-8') in t:
+            if name.get_puzzle_name() in t:
                 found = True
         self.assertTrue(found)
 
@@ -39,7 +39,7 @@ class NewVisitorTest(unittest.TestCase):
 
         found = False
         for name in self.names:
-            if name.get_funny_name().decode('utf-8') in t:
+            if name.get_funny_name() in t:
                 found = True
         self.assertTrue(found)
 
@@ -66,7 +66,7 @@ class NewVisitorTest(unittest.TestCase):
 
         found = False
         for name in self.names:
-            if name.resolution.decode('utf-8') in t:
+            if name.resolution in t:
                 found = True
         self.assertTrue(found)
 

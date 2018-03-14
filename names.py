@@ -45,19 +45,23 @@ class Name:
     def from_csv(f):
         '''
         Returns a list of names, read from a CSV file.
+
+        This reads all fields as unicode.
         '''
         dr = csv.DictReader(f, fieldnames=CSV_HEADERS, delimiter=';')
         names = []
         for row in dr:
             logging.debug('Got CSV row: %s' % row)
-            name = Name(row['Firstname'], row['Lastname'], row['Firstlastfunny'])
+            name = Name(unicode(row['Firstname'], 'utf-8'),
+                unicode(row['Lastname'], 'utf-8'),
+                unicode(row['Firstlastfunny'], 'utf-8'))
 
             # The fields are not mandatory, so reading may fail gracefully with a
             # default value.
-            name.resolution = row.get('Resolution')
-            name.explanation = row.get('Explanation')
-            name.author = row.get('Author')
-            name.comment = row.get('Comment')
+            name.resolution = unicode(row.get('Resolution'), 'utf-8')
+            name.explanation = unicode(row.get('Explanation'), 'utf-8')
+            name.author = unicode(row.get('Author', 'utf-8'))
+            name.comment = unicode(row.get('Comment', 'utf-8'))
             logging.debug('Read name with firstname %s and lastname %s' %
                     (name.firstname, name.lastname))
             names.append(name)
