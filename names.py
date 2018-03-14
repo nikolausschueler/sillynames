@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-from flask import Flask, render_template
+from flask import Flask, flash, render_template, request
+from wtforms import Form, TextField
 import csv
 import logging
 import random
@@ -67,10 +68,19 @@ class Name:
             names.append(name)
         return names
 
+    @staticmethod
+    def search_name(names, firstname, lastname):
+        for name in names:
+            if ((firstname and firstname in name.firstname) or
+                (lastname and lastname in name.lastname)):
+                return name
+        return None
+
 #
 # Initialization.
 #
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'totally secret key'
 
 #import pdb; pdb.set_trace()
 
@@ -86,3 +96,26 @@ def random_name():
     name = random.choice(names)
 
     return render_template('name.html', name=name)
+
+class SearchForm(Form):
+    firstname = TextField('Firstname:')
+    lastname = TextField('Lastname:')
+
+@app.route('/search', methods=['GET', 'POST'])
+def search_name():
+    form = SearchForm(request.form)
+
+    print form.errors
+    if request.method == 'POST':
+        firstname = request.form['firstname']
+        lastname = request.form['lastname']
+        name = Name.search_name(names, firstname, lastname)
+        print 'Found name', name.firstname, name.lastname
+
+        if form.validate():
+            # Save the comment here.
+            flash('Hello ' + firstname)
+        else:
+            flash('All the form fields are required. ')
+
+    return render_template('search.html', form=form)
