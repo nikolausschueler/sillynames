@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from flask import Flask, flash, render_template, request
+from flask import Flask, flash, render_template, redirect, request, url_for
 from wtforms import Form, TextField
 import csv
 import logging
@@ -110,10 +110,14 @@ def search_name():
         firstname = request.form['firstname']
         lastname = request.form['lastname']
         name = Name.search_name(names, firstname, lastname)
+        if not name:
+            flash('No name found')
+            return redirect(url_for('search_name'))
 
         if form.validate():
             return render_template('name.html', name=name)
         else:
             flash('All the form fields are required. ')
+            return redirect(url_for('search_name'))
 
     return render_template('search.html', form=form)
