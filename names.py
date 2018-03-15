@@ -110,11 +110,9 @@ def search_name():
         firstname = request.form['firstname']
         lastname = request.form['lastname']
         name = Name.search_name(names, firstname, lastname)
-        print 'Found name', name.firstname, name.lastname
 
         if form.validate():
-            # Save the comment here.
-            flash('Hello ' + firstname)
+            return render_template('name.html', name=name)
         else:
             flash('All the form fields are required. ')
 
