@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from flask import Flask, flash, render_template, redirect, request, url_for
-from wtforms import Form, TextField
+from wtforms import Form, TextField, validators
 import csv
 import logging
 import random
@@ -98,8 +98,18 @@ def random_name():
     return render_template('name.html', name=name)
 
 class SearchForm(Form):
-    firstname = TextField('Firstname:')
-    lastname = TextField('Lastname:')
+    firstname = TextField('Firstname:', validators=[validators.Optional()])
+    lastname = TextField('Lastname:', validators=[validators.Optional()])
+    error = ''
+
+    def validate(self):
+        if not super(SearchForm, self).validate():
+            return False
+        if not self.firstname.data and not self.lastname.data:
+            msg = 'At least one of Firstname, Lastname must be used for search'
+            self.error = msg
+            return False
+        return True
 
 @app.route('/search', methods=['GET', 'POST'])
 def search_name():
@@ -107,17 +117,18 @@ def search_name():
 
     print form.errors
     if request.method == 'POST':
-        firstname = request.form['firstname']
-        lastname = request.form['lastname']
-        name = Name.search_name(names, firstname, lastname)
-        if not name:
-            flash('No name found')
-            return redirect(url_for('search_name'))
 
         if form.validate():
-            return render_template('name.html', name=name)
+            firstname = request.form['firstname']
+            lastname = request.form['lastname']
+            name = Name.search_name(names, firstname, lastname)
+            if not name:
+                flash('No name found')
+                return redirect(url_for('search_name'))
+            else:
+                return render_template('name.html', name=name)
         else:
-            flash('All the form fields are required. ')
+            flash(form.error)
             return redirect(url_for('search_name'))
 
     return render_template('search.html', form=form)
