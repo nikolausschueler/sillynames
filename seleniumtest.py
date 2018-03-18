@@ -70,5 +70,12 @@ class NewVisitorTest(unittest.TestCase):
                 found = True
         self.assertTrue(found)
 
+    def test_search(self):
+        self.browser.get('http://127.0.0.1:5000/search')
+        self.browser.find_element_by_xpath('//input[@name="firstname"]'). send_keys('Ingo')
+        self.browser.find_element_by_xpath('//input[@value="Submit"]').click()
+        t = self.browser.find_element_by_id('name').text
+        self.assertEqual(t, 'Name: Knito, Ingo')
+
 if __name__ == '__main__':
     unittest.main()
