@@ -77,5 +77,19 @@ class NewVisitorTest(unittest.TestCase):
         t = self.browser.find_element_by_id('name').text
         self.assertEqual(t, 'Name: Knito, Ingo')
 
+    def test_search_fail_no_field_filled(self):
+        self.browser.get('http://127.0.0.1:5000/search')
+        self.browser.find_element_by_xpath('//input[@value="Submit"]').click()
+        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li').text
+        self.assertEqual(t,
+            'At least one of Firstname, Lastname must be used for search')
+
+    def test_search_fail_name_does_not_exist(self):
+        self.browser.get('http://127.0.0.1:5000/search')
+        self.browser.find_element_by_xpath('//input[@name="firstname"]').send_keys('Hannibal')
+        self.browser.find_element_by_xpath('//input[@value="Submit"]').click()
+        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li').text
+        self.assertEqual(t, 'No name found')
+
 if __name__ == '__main__':
     unittest.main()
