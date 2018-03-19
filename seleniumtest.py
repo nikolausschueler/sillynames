@@ -91,5 +91,15 @@ class NewVisitorTest(unittest.TestCase):
         t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li').text
         self.assertEqual(t, 'No name found')
 
+    def test_all_names(self):
+        '''
+        We don't care about details. If we have as many list elements with the
+        right class as there are names in the data, we assume the page works.
+        '''
+        self.browser.get('http://127.0.0.1:5000/all')
+        namez = names.Name.names_from_csv(open(names.CSV_FILE))
+        self.assertEqual(len(self.browser.find_elements_by_xpath('//li[@class="nameentry"]')),
+                len(namez))
+
 if __name__ == '__main__':
     unittest.main()

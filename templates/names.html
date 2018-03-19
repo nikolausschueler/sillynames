@@ -7,7 +7,7 @@
 
     <ul>
     {% for name in names %}
-    <li>
+    <li class="nameentry">
     <a href="{{ url_for('name', firstname=name.firstname,
       lastname=name.lastname) }}">{{ name.get_puzzle_name() }}</a>
     </li>

@@ -69,6 +69,13 @@ class Name:
         return names
 
     @staticmethod
+    def names_from_csv(f):
+        names = Name.from_csv(f)
+
+        # Ignore the header, we are only interested in the data.
+        return names[1:]
+
+    @staticmethod
     def search_name(names, firstname, lastname):
         for name in names:
             if ((firstname and firstname in name.firstname) or
@@ -84,10 +91,7 @@ app.config['SECRET_KEY'] = 'totally secret key'
 
 #import pdb; pdb.set_trace()
 
-names = Name.from_csv(open(CSV_FILE))
-
-# Ignore the header, we are only interested in the data.
-names = names[1:]
+names = Name.names_from_csv(open(CSV_FILE))
 
 @app.route('/name')
 def name():
