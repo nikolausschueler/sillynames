@@ -132,3 +132,7 @@ def search_name():
             return redirect(url_for('search_name'))
 
     return render_template('search.html', form=form)
+
+@app.route('/all')
+def all_names():
+    return render_template('names.html', names=names)
