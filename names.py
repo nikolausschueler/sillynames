@@ -89,6 +89,13 @@ names = Name.from_csv(open(CSV_FILE))
 # Ignore the header, we are only interested in the data.
 names = names[1:]
 
+@app.route('/name')
+def name():
+    firstname = request.args.get('firstname')
+    lastname = request.args.get('lastname')
+    name = Name.search_name(names, firstname, lastname)
+    return render_template('name.html', name=name)
+
 @app.route('/')
 def random_name():
 
