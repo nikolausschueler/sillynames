@@ -1,20 +1,17 @@
 {% extends "base.html" %}
 
-<html>
+{% block content %}
+<body>
 
-  {% block content %}
-  <body>
+  <ul>
+  {% for name in names %}
+  <li class="nameentry">
+  <a href="{{ url_for('name', firstname=name.firstname,
+    lastname=name.lastname) }}">{{ name.get_puzzle_name() }}</a>
+  </li>
+  {% endfor %}
+  </ul>
 
-    <ul>
-    {% for name in names %}
-    <li class="nameentry">
-    <a href="{{ url_for('name', firstname=name.firstname,
-      lastname=name.lastname) }}">{{ name.get_puzzle_name() }}</a>
-    </li>
-    {% endfor %}
-    </ul>
+</body>
 
-  </body>
-
-  {% endblock %}
-</html>
+{% endblock %}

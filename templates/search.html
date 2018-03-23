@@ -1,41 +1,38 @@
 {% extends "base.html" %}
 
-<html>
+{% block content %}
+<body>
 
-  {% block content %}
-  <body>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes" style="color: red">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class="flashes" style="color: red">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+  <form action="" method="post">
+    {{ form.csrf }}
 
-    <form action="" method="post">
-      {{ form.csrf }}
+    <div class="input text">
+      {{ form.firstname.label }} {{ form.firstname }}
+    </div>
 
-      <div class="input text">
-        {{ form.firstname.label }} {{ form.firstname }}
-      </div>
+    <div class="input submit">
+      <input type="submit" value="Submit" />
+    </div>
 
-      <div class="input submit">
-        <input type="submit" value="Submit" />
-      </div>
+    <div class="input text">
+      {{ form.lastname.label }} {{ form.lastname }}
+    </div>
 
-      <div class="input text">
-        {{ form.lastname.label }} {{ form.lastname }}
-      </div>
+    <div class="input submit">
+      <input type="submit" value="Submit" />
+    </div>
 
-      <div class="input submit">
-        <input type="submit" value="Submit" />
-      </div>
+  </form>
+</body>
 
-    </form>
-  </body>
-
-  {% endblock %}
-</html>
+{% endblock %}
