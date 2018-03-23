@@ -102,10 +102,7 @@ def name():
 
 @app.route('/')
 def random_name():
-
-    # This ignores the first row, which contains the header.
     name = random.choice(names)
-
     return render_template('name.html', name=name)
 
 class SearchForm(Form):
