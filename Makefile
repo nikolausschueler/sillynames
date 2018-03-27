@@ -1,3 +1,4 @@
+.PHONY: test
 test:
 	./run.sh &
 	./seleniumtest.py
@@ -9,3 +10,18 @@ docker:
 .PHONY: run-docker
 run-docker:
 	docker run -p 5000:5000 seleniumct
+
+.PHONY: venv
+venv:
+	virtualenv --python `which python` venv
+
+.PHONY: pip
+pip:
+	pip install -r requirements.txt
+
+.PHONY: clean
+clean: venv-clean
+
+.PHONY: venv-clean
+venv-clean:
+	rm -fr venv
