@@ -1,12 +1,12 @@
 .PHONY: test
 test:
-	./run.sh &
+	./names.py &
 	./seleniumtest.py
 
 .PHONY: docker
 docker:
-	#docker build --no-cache --tag seleniumct .
-	docker build --tag seleniumct .
+	docker build --no-cache --tag seleniumct .
+	#docker build --tag seleniumct .
 
 .PHONY: run-docker
 run-docker:
