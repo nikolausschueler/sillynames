@@ -3,6 +3,7 @@ test:
 	./run.sh &
 	./seleniumtest.py
 
+.PHONY: docker
 docker:
 	#docker build --no-cache --tag seleniumct .
 	docker build --tag seleniumct .
