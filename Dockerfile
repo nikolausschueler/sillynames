@@ -12,6 +12,7 @@ RUN pip install flask-wtf
 
 COPY ./names.csv /
 COPY ./names.py /
+COPY ./static /static
 COPY ./templates /templates
 COPY ./run-on-docker.sh /
 COPY ./seleniumtest.py /
