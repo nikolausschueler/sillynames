@@ -14,7 +14,7 @@ run-docker:
 
 .PHONY: venv
 venv:
-	virtualenv --python `which python` venv
+	virtualenv --python `which python3` venv
 
 .PHONY: pip
 pip:
