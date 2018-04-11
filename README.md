@@ -1,29 +1,33 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### What is it? ###
 
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+This is a little demo of how to testing with Selenium
+(https://www.seleniumhq.org/). The app presents names which are presumed to be
+funny.
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Install PhantomJS. Get it from the PhantomJS homepage, http://phantomjs.org/,
+  install it and add it to your path.
 
-### Contribution guidelines ###
+* Set up the Virtualenv with `make venv`.
+* Activate it with `source venv/bin/activate`
+* Install needed packages with `pip install -r requirements.txt`
+* Run the tests with `make test`
 
-* Writing tests
-* Code review
-* Other guidelines
+### Copyright ###
 
-### Who do I talk to? ###
+Copyright (C) 2018 by Nikolaus Schüler, nik@drnik.org.
 
-* Repo owner or admin
-* Other community or team contact
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
