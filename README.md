@@ -16,6 +16,14 @@ funny.
 * Install needed packages with `pip install -r requirements.txt`
 * Run the tests with `make test`
 
+### Docker issues ###
+
+This also contains a Dockerfile. With this, you can create a Docker image, run
+it and access the app from your host. But the Docker setup can not run the
+tests, there is a problem with PhantomJS that prevents this. Although it looks
+like you can install PhantomJS with Node/Npm, I couldn't set it up so the tests
+could be run.
+
 ### Copyright ###
 
 Copyright (C) 2018 by Nikolaus Schüler, nik@drnik.org.
