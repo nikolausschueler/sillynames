@@ -58,17 +58,19 @@ class Name:
         names = []
         for row in dr:
             logging.debug('Got CSV row: %s' % row)
-            name = Name(row['Firstname'],
-                row['Lastname'],
-                row['Firstlastfunny'])
+            name = Name(
+                    row['Firstname'],
+                    row['Lastname'],
+                    row['Firstlastfunny'])
 
-            # The fields are not mandatory, so reading may fail gracefully with a
-            # default value.
+            # The fields are not mandatory, so reading may fail gracefully
+            # with a default value.
             name.resolution = row.get('Resolution')
             name.explanation = row.get('Explanation')
             name.author = row.get('Author')
             name.comment = row.get('Comment')
-            logging.debug('Read name with firstname %s and lastname %s' %
+            logging.debug(
+                    'Read name with firstname %s and lastname %s' %
                     (name.firstname, name.lastname))
             names.append(name)
         return names
@@ -84,7 +86,7 @@ class Name:
     def search_name(names, firstname, lastname):
         for name in names:
             if ((firstname and firstname in name.firstname) or
-                (lastname and lastname in name.lastname)):
+               (lastname and lastname in name.lastname)):
                 return name
         return None
 
@@ -96,6 +98,7 @@ app.config['SECRET_KEY'] = 'totally secret key'
 
 names = Name.names_from_csv(open(CSV_FILE, encoding='utf-8'))
 
+
 @app.route('/name')
 def name():
     firstname = request.args.get('firstname')
@@ -103,10 +106,12 @@ def name():
     name = Name.search_name(names, firstname, lastname)
     return render_template('name.html', name=name)
 
+
 @app.route('/')
 def random_name():
     name = random.choice(names)
     return render_template('name.html', name=name)
+
 
 class SearchForm(Form):
     firstname = TextField('Firstname:', validators=[validators.Optional()])
@@ -121,6 +126,7 @@ class SearchForm(Form):
             self.error = msg
             return False
         return True
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def search_name():
@@ -143,6 +149,7 @@ def search_name():
             return redirect(url_for('search_name'))
 
     return render_template('search.html', form=form)
+
 
 @app.route('/all')
 def all_names():
