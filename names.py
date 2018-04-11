@@ -8,10 +8,17 @@ import random
 import sys
 
 CSV_FILE = 'names.csv'
-CSV_HEADERS = ('Firstname', 'Lastname', 'Firstlastfunny', 'Resolution',
-    'Explanation', 'Author', 'Comment')
+CSV_HEADERS = (
+    'Firstname',
+    'Lastname',
+    'Firstlastfunny',
+    'Resolution',
+    'Explanation',
+    'Author',
+    'Comment')
 
 logging.basicConfig(level=logging.DEBUG)
+
 
 class Name:
 
@@ -33,8 +40,8 @@ class Name:
 
     def get_funny_name(self):
         '''
-        Get the name in it's (presumably) funny form. For example, "Top, Sigrid"
-        is the funny form of "Sigrid Top".
+        Get the name in it's (presumably) funny form. For example,
+        "Top, Sigrid" is the funny form of "Sigrid Top".
         '''
         if self.firstlastfunny:
             s = self.firstname + self.lastname
