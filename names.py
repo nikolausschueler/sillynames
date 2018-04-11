@@ -87,8 +87,6 @@ class Name:
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'totally secret key'
 
-#import pdb; pdb.set_trace()
-
 names = Name.names_from_csv(open(CSV_FILE, encoding='utf-8'))
 
 @app.route('/name')
