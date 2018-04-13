@@ -6,6 +6,7 @@ import unittest
 
 import names
 
+
 class NewVisitorTest(unittest.TestCase):
 
     def setUp(self):
@@ -34,7 +35,8 @@ class NewVisitorTest(unittest.TestCase):
         Check that name is displayed.
         '''
         self.browser.get('http://127.0.0.1:5000')
-        self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]').click()
+        self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]') \
+            .click()
         t = self.browser.find_element_by_id('show').text
 
         found = False
@@ -48,7 +50,8 @@ class NewVisitorTest(unittest.TestCase):
         Check that name is displayed.
         '''
         self.browser.get('http://127.0.0.1:5000')
-        self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]').click()
+        self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]') \
+            .click()
 
         # Not all funny names need to be explained, so if the button is not
         # there, we don't test.
@@ -72,7 +75,8 @@ class NewVisitorTest(unittest.TestCase):
 
     def test_search(self):
         self.browser.get('http://127.0.0.1:5000/search')
-        self.browser.find_element_by_xpath('//input[@name="firstname"]'). send_keys('Ingo')
+        self.browser.find_element_by_xpath('//input[@name="firstname"]') \
+            .send_keys('Ingo')
         self.browser.find_element_by_xpath('//input[@value="Submit"]').click()
         t = self.browser.find_element_by_id('name').text
         self.assertEqual(t, 'Name: Knito, Ingo')
@@ -80,15 +84,18 @@ class NewVisitorTest(unittest.TestCase):
     def test_search_fail_no_field_filled(self):
         self.browser.get('http://127.0.0.1:5000/search')
         self.browser.find_element_by_xpath('//input[@value="Submit"]').click()
-        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li').text
+        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li') \
+                .text
         self.assertEqual(t,
-            'At least one of Firstname, Lastname must be used for search')
+                'At least one of Firstname, Lastname must be used for search')
 
     def test_search_fail_name_does_not_exist(self):
         self.browser.get('http://127.0.0.1:5000/search')
-        self.browser.find_element_by_xpath('//input[@name="firstname"]').send_keys('Hannibal')
+        self.browser.find_element_by_xpath('//input[@name="firstname"]') \
+            .send_keys('Hannibal')
         self.browser.find_element_by_xpath('//input[@value="Submit"]').click()
-        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li').text
+        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li') \
+                .text
         self.assertEqual(t, 'No name found')
 
     def test_all_names(self):
