@@ -87,7 +87,7 @@ class NewVisitorTest(unittest.TestCase):
         t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li') \
                 .text
         self.assertEqual(t,
-                'At least one of Firstname, Lastname must be used for search')
+                         'At least one of Firstname, Lastname must be used for search')
 
     def test_search_fail_name_does_not_exist(self):
         self.browser.get('http://127.0.0.1:5000/search')
@@ -106,7 +106,8 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.get('http://127.0.0.1:5000/all')
         namez = names.Name.names_from_csv(open(names.CSV_FILE))
         self.assertEqual(len(self.browser.find_elements_by_xpath('//li[@class="nameentry"]')),
-                len(namez))
+                         len(namez))
+
 
 if __name__ == '__main__':
     unittest.main()
