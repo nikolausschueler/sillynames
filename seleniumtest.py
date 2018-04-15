@@ -94,8 +94,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_xpath('//input[@value="Suchen"]').click()
         t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li') \
                 .text
-        self.assertEqual(t,
-                         'At least one of Firstname, Lastname must be used for search')
+        self.assertEqual(t, names.ERROR_EMPTY_SEARCH)
 
     def test_search_fail_name_does_not_exist(self):
         self.browser.get('http://127.0.0.1:5000/search')
@@ -104,7 +103,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_xpath('//input[@value="Suchen"]').click()
         t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li') \
                 .text
-        self.assertEqual(t, 'No name found')
+        self.assertEqual(t, names.ERROR_NO_NAME_FOUND)
 
     def test_all_names(self):
         '''

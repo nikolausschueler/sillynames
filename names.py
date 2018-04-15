@@ -17,6 +17,10 @@ CSV_HEADERS = (
     'Author',
     'Comment')
 
+ERROR_NO_NAME_FOUND = 'Kein Name gefunden'
+ERROR_EMPTY_SEARCH = \
+        'Ich brauch mindestens einen Vor- oder Nachnamen'
+
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -122,7 +126,7 @@ class SearchForm(Form):
         if not super(SearchForm, self).validate():
             return False
         if not self.firstname.data and not self.lastname.data:
-            msg = 'At least one of Firstname, Lastname must be used for search'
+            msg = ERROR_EMPTY_SEARCH
             self.error = msg
             return False
         return True
@@ -140,7 +144,7 @@ def search_name():
             lastname = request.form['lastname']
             name = Name.search_name(names, firstname, lastname)
             if not name:
-                flash('No name found')
+                flash(ERROR_NO_NAME_FOUND)
                 return redirect(url_for('search_name'))
             else:
                 return render_template('name.html', name=name)
