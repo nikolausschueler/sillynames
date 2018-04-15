@@ -32,7 +32,7 @@ class NewVisitorTest(unittest.TestCase):
 
     def test_funny_name(self):
         '''
-        Check that fun verson of name is displayed.
+        Check that fun version of name is displayed.
         '''
         self.browser.get('http://127.0.0.1:5000')
         self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]') \
