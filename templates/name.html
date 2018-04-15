@@ -6,6 +6,8 @@
     document.getElementById('show').style.visibility = 'hidden';
     document.getElementById('explain').style.visibility = 'hidden';
     document.getElementById('explainbutton').style.visibility = 'hidden';
+    document.getElementById('explainfull').style.visibility = 'hidden';
+    document.getElementById('explainhead').style.visibility = 'hidden';
   }
   function show () {
     document.getElementById('show').style.visibility = 'visible';
@@ -13,6 +15,8 @@
   }
   function explain () {
     document.getElementById('explain').style.visibility = 'visible';
+    document.getElementById('explainhead').style.visibility = 'visible';
+    document.getElementById('explainfull').style.visibility = 'visible';
   }
 </script>
 
@@ -25,6 +29,11 @@
   {% if name.resolution %}
   <input type="button" id="explainbutton" value="Erklärs mir" onclick="explain()">
   <p id="explain">{{ name.resolution }}</p>
+  {% endif %}
+
+  {% if name.explanation %}
+  <p id="explainhead">Beschreibung:</p>
+  <p id="explainfull">{{ name.explanation }}</p>
   {% endif %}
 
 </body>
