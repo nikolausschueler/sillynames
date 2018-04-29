@@ -100,7 +100,8 @@ class Name:
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'totally secret key'
 
-names = Name.names_from_csv(open(CSV_FILE, encoding='utf-8'))
+with open(CSV_FILE, encoding='utf-8') as csv_file:
+      names = Name.names_from_csv(csv_file)
 
 
 @app.route('/name')
