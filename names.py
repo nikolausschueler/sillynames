@@ -21,7 +21,7 @@ ERROR_NO_NAME_FOUND = 'Kein Name gefunden'
 ERROR_EMPTY_SEARCH = \
         'Ich brauch mindestens einen Vor- oder Nachnamen'
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.WARN)
 
 
 class Name:
