@@ -9,8 +9,21 @@ import names
 
 class NewVisitorTest(unittest.TestCase):
 
-    def setUp(self):
+    def set_chrome(self):
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        self.browser = webdriver.Chrome(chrome_options=options)
+
+    def set_firefox(self):
+        options = webdriver.FirefoxOptions()
+        options.add_argument('-headless')
+        self.browser = webdriver.Firefox(firefox_options=options)
+
+    def set_phantomjs(self):
         self.browser = webdriver.PhantomJS()
+
+    def setUp(self):
+        self.set_firefox()
         self.browser.implicitly_wait(3)
         self.names = names.Name.from_csv(open(names.CSV_FILE))
 
