@@ -18,26 +18,26 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.quit()
 
     def test_name(self):
-        '''
+        """
         Check that name is displayed.
-        '''
+        """
         self.browser.get('http://127.0.0.1:5000')
         t = self.browser.find_element_by_id('name').text.strip()
         self.assertIn(t.strip(), ["Name: " + name.get_puzzle_name() for name in self.names])
 
     def test_funny_name(self):
-        '''
+        """
         Check that fun version of name is displayed.
-        '''
+        """
         self.browser.get('http://127.0.0.1:5000')
         self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]').click()
         t = self.browser.find_element_by_id('show').text.strip()
         self.assertIn(t.strip(), [name.get_funny_name() for name in self.names])
 
     def test_resolution(self):
-        '''
+        """
         Check that resolution is displayed, if available..
-        '''
+        """
         self.browser.get('http://127.0.0.1:5000')
         self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]') \
             .click()
@@ -95,10 +95,10 @@ class NewVisitorTest(unittest.TestCase):
         self.assertEqual(t, names.ERROR_NO_NAME_FOUND)
 
     def test_all_names(self):
-        '''
+        """
         We don't care about details. If we have as many list elements with the
         right class as there are names in the data, we assume the page works.
-        '''
+        """
         self.browser.get('http://127.0.0.1:5000/all')
         namez = names.Name.names_from_csv(open(names.CSV_FILE))
         self.assertEqual(len(self.browser.find_elements_by_xpath('//li[@class="nameentry"]')),
