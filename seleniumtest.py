@@ -22,28 +22,17 @@ class NewVisitorTest(unittest.TestCase):
         Check that name is displayed.
         '''
         self.browser.get('http://127.0.0.1:5000')
-        t = self.browser.find_element_by_id('name').text
-
-        found = False
-        for name in self.names:
-            if name.get_puzzle_name() in t:
-                found = True
-        self.assertTrue(found)
+        t = self.browser.find_element_by_id('name').text.strip()
+        self.assertIn(t.strip(), ["Name: " + name.get_puzzle_name() for name in self.names])
 
     def test_funny_name(self):
         '''
         Check that fun version of name is displayed.
         '''
         self.browser.get('http://127.0.0.1:5000')
-        self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]') \
-            .click()
-        t = self.browser.find_element_by_id('show').text
-
-        found = False
-        for name in self.names:
-            if name.get_funny_name() in t:
-                found = True
-        self.assertTrue(found)
+        self.browser.find_element_by_xpath('//input[@value="Zeigs mir"]').click()
+        t = self.browser.find_element_by_id('show').text.strip()
+        self.assertIn(t.strip(), [name.get_funny_name() for name in self.names])
 
     def test_resolution(self):
         '''
