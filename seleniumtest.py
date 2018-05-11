@@ -60,20 +60,13 @@ class NewVisitorTest(unittest.TestCase):
         # The value (displayed text) of this button contains an umlaut, so we
         # better search it by id, umlauts in an XPath, as we use it for the
         # first button, won't work.
-        be = None
         try:
             be = self.browser.find_element_by_id('explainbutton')
         except NoSuchElementException:
             return
-        if be:
-            be.click()
-            t = self.browser.find_element_by_id('explain').text
-
-        found = False
-        for name in self.names:
-            if name.resolution in t:
-                found = True
-        self.assertTrue(found)
+        be.click()
+        t = self.browser.find_element_by_id('explain').text.strip()
+        self.assertIn(t.strip(), [name.resolution for name in self.names])
 
     def test_search_by_firstname(self):
         self.browser.get('http://127.0.0.1:5000/search')
