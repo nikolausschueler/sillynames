@@ -17,7 +17,7 @@ class NewVisitorTest(unittest.TestCase):
     def set_firefox(self):
         options = webdriver.FirefoxOptions()
         options.add_argument('-headless')
-        self.browser = webdriver.Firefox(firefox_options=options)
+        self.browser = webdriver.Firefox(options=options)
 
     def set_phantomjs(self):
         self.browser = webdriver.PhantomJS()
