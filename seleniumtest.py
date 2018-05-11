@@ -25,7 +25,8 @@ class NewVisitorTest(unittest.TestCase):
     def setUp(self):
         self.set_firefox()
         self.browser.implicitly_wait(3)
-        self.names = names.Name.from_csv(open(names.CSV_FILE))
+        with open(names.CSV_FILE, encoding='utf-8') as csv_file:
+            self.names = names.Name.names_from_csv(csv_file)
 
     def tearDown(self):
         self.browser.quit()
@@ -104,9 +105,9 @@ class NewVisitorTest(unittest.TestCase):
         right class as there are names in the data, we assume the page works.
         """
         self.browser.get('http://127.0.0.1:5000/all')
-        namez = names.Name.names_from_csv(open(names.CSV_FILE))
-        self.assertEqual(len(self.browser.find_elements_by_xpath('//li[@class="nameentry"]')),
-                         len(namez))
+        list_items = self.browser.find_elements_by_xpath('//li[@class="nameentry"]')
+        self.assertCountEqual([name.get_puzzle_name() for name in self.names],
+                              [item.text.strip() for item in list_items])
 
 
 if __name__ == '__main__':
