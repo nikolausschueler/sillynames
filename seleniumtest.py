@@ -80,7 +80,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_xpath('//input[@name="firstname"]') \
             .send_keys('Ingo')
         self.browser.find_element_by_xpath('//input[@value="Suchen"]').click()
-        t = self.browser.find_element_by_id('name').text
+        t = self.browser.find_element_by_id('name').text.strip()
         self.assertEqual(t, 'Name: Knito, Ingo')
 
     def test_search_by_lastname(self):
@@ -88,14 +88,13 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_xpath('//input[@name="lastname"]') \
             .send_keys('Madecke')
         self.browser.find_element_by_xpath('//input[@value="Suchen"]').click()
-        t = self.browser.find_element_by_id('name').text
+        t = self.browser.find_element_by_id('name').text.strip()
         self.assertEqual(t, 'Name: Madecke, Roy')
 
     def test_search_fail_no_field_filled(self):
         self.browser.get('http://127.0.0.1:5000/search')
         self.browser.find_element_by_xpath('//input[@value="Suchen"]').click()
-        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li') \
-                .text
+        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li').text.strip()
         self.assertEqual(t, names.ERROR_EMPTY_SEARCH)
 
     def test_search_fail_name_does_not_exist(self):
@@ -103,8 +102,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.find_element_by_xpath('//input[@name="firstname"]') \
             .send_keys('Hannibal')
         self.browser.find_element_by_xpath('//input[@value="Suchen"]').click()
-        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li') \
-                .text
+        t = self.browser.find_element_by_xpath('//ul[@class="flashes"]/li').text.strip()
         self.assertEqual(t, names.ERROR_NO_NAME_FOUND)
 
     def test_all_names(self):
