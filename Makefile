@@ -12,6 +12,14 @@ docker:
 run-docker:
 	docker run -p 5000:5000 seleniumct
 
+.PHONY: docker-compose-up
+docker-compose-up:
+	docker-compose up --detach
+
+.PHONY: docker-compose-stop
+docker-compose-stop:
+	docker-compose stop
+
 .PHONY: venv
 venv:
 	virtualenv --python `which python3` venv
