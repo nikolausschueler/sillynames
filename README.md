@@ -13,7 +13,7 @@ funny.
 
 * Set up the Virtualenv with `make venv`.
 * Activate it with `source venv/bin/activate`
-* Install needed packages with `pip install -r requirements.txt`
+* Install needed packages with `make pip`
 * Run the tests with `make test`
 
 ### Docker issues ###
