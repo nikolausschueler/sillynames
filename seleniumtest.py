@@ -23,7 +23,7 @@ class NewVisitorTest(unittest.TestCase):
         self.browser = webdriver.PhantomJS()
 
     def setUp(self):
-        self.set_firefox()
+        self.set_chrome()
         self.browser.implicitly_wait(3)
         with open(names.CSV_FILE, encoding='utf-8') as csv_file:
             self.names = names.Name.names_from_csv(csv_file)
