@@ -8,9 +8,8 @@ funny.
 
 ### How do I get set up? ###
 
-* Install PhantomJS. Get it from the PhantomJS homepage, http://phantomjs.org/,
-  install it and add it to your path.
-
+* Install the Chrome browser. You can get it here:
+  https://www.google.com/chrome.
 * Set up the Virtualenv with `make venv`.
 * Activate it with `source venv/bin/activate`
 * Install needed packages with `make pip`
