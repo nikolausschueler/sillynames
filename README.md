@@ -8,12 +8,12 @@ funny.
 
 ### How do I get set up? ###
 
-* Install the Chrome browser. You can get it here:
+1. Install the Chrome browser. You can get it here:
   https://www.google.com/chrome.
-* Set up the Virtualenv with `make venv`.
-* Activate it with `source venv/bin/activate`
-* Install needed packages with `make pip`
-* Run the tests with `make test`
+1. Set up the Virtualenv with `make venv`.
+1. Activate it with `source venv/bin/activate`
+1. Install needed packages with `make pip`
+1. Run the tests with `make test`
 
 ### Docker issues ###
 
