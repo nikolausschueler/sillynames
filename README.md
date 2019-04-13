@@ -6,6 +6,10 @@ This is a little demo of how to testing with Selenium
 (https://www.seleniumhq.org/). The app presents names which are presumed to be
 funny.
 
+It was created as a demo for an article in German computer magazine c't:
+
+Klickroboter. Automatisches Testen mit Selenium, c't 11/18, Heise Verlag.
+
 ### How do I get set up? ###
 
 1. Install the Chrome browser. You can get it here:
