@@ -160,5 +160,6 @@ def search_name():
 def all_names():
     return render_template('names.html', names=names)
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
