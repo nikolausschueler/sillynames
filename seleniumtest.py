@@ -12,7 +12,7 @@ class NewVisitorTest(unittest.TestCase):
     def set_chrome(self):
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
-        self.browser = webdriver.Chrome(chrome_options=options)
+        self.browser = webdriver.Chrome(options=options)
 
     def set_firefox(self):
         options = webdriver.FirefoxOptions()
