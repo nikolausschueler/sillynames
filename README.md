@@ -14,6 +14,7 @@ Klickroboter. Automatisches Testen mit Selenium, c't 11/18, Heise Verlag.
 
 1. Install the Chrome browser. You can get it here:
   https://www.google.com/chrome.
+1. Install Chromedriver, as described here: https://chromedriver.chromium.org/downloads
 1. Set up the Virtualenv with `make venv`.
 1. Activate it with `source venv/bin/activate`
 1. Install needed packages with `make pip`
